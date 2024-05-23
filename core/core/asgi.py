@@ -3,7 +3,6 @@ from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
 from django.conf import settings
 import os
-
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings")
 from .routing import websocket_urlpatterns
 
