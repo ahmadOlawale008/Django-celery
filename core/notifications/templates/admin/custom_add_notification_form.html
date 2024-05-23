@@ -1,0 +1,21 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<h1 style="font-size: 20px; font-weight: 600;">Send Notifications</h1>
+<form method="post" action="{% url 'admin:send-notification' %}">
+    {% csrf_token %}
+    {% for field in form %}
+    <label for="{{field.id_for_label}}">{{field.label_tag}}</label>
+    <textarea class="form-control" rows="10" style="width: 50%;" name="{{field.html_name}}" id="{{field.auto_id}}">{% if field.value != None  %}{{field.value}} {% endif %}</textarea>
+    {% if field.help_text %}
+    <small class="form-text text-muted">{{field.help_text}}</small>
+    {% endif %}
+    {% endfor %}
+    <hr style="margin: 22px 0px 22px 0px;">
+    <p class="submit-row">
+        <input value="Send Notification"
+            style="background-color: var(--button-bg); font-size: 14px; cursor: pointer; border-radius: 3px; padding: 5px 10px; color: white;"
+            type="submit" class="btn btn-primary">
+        </input>
+    </p>
+</form>
+{% endblock %}
